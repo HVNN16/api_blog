@@ -14,13 +14,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Connect to MongoDB using the connection string from .env
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+// Kết nối tới MongoDB
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 20000, // Thời gian timeout 20 giây
+  })
+  .then(() => console.log("Kết nối thành công tới MongoDB"))
+  .catch((err) => console.error("Lỗi kết nối MongoDB:", err));
 
 // Routes
 app.get('/stories', async (req, res) => {
