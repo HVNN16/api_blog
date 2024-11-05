@@ -54,6 +54,13 @@
       "imageFileName": "assets/img/stories/story_2.jpg",
       "iconFileName": "assets/img/icons/category_3.png",
       "isViewed": false
+    },
+    {
+        "id": 9,
+        "name": "Nghĩa",
+        "imageFileName": "assets/img/stories/story_2.jpg",
+        "iconFileName": "assets/img/icons/category_3.png",
+        "isViewed": false
     }
   ]
   
