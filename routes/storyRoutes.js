@@ -13,9 +13,31 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Thêm mới một story
-router.post('/', async (req, res) => {
-  const story = new Story(req.body);
+// Cấu hình multer để lưu trữ tệp tin
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');  // Thư mục lưu file, có thể điều chỉnh theo nhu cầu
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);  // Đặt tên file để tránh trùng lặp
+  }
+});
+
+const upload = multer({ storage: storage });
+
+// Thêm mới một story (với upload file)
+router.post('/', upload.single('imageFile'), async (req, res) => {
+  const { name, imageFileName, iconFileName, isViewed } = req.body;
+  const storyData = {
+    name,
+    imageFileName,
+    iconFileName,
+    isViewed,
+    imagePath: req.file ? req.file.path : null // lưu đường dẫn của file
+  };
+
+  const story = new Story(storyData);
+
   try {
     const savedStory = await story.save();
     res.status(201).json(savedStory);
@@ -23,7 +45,6 @@ router.post('/', async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
 // Cập nhật một story theo ID
 router.put('/:id', async (req, res) => {
   try {
