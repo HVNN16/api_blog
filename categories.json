@@ -1,0 +1,34 @@
+
+[
+    {
+      "id": 1,
+      "title": "Cinema",
+      "imageFileName": "assets/img/posts/large/large_post_2.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Technology",
+      "imageFileName": "assets/img/posts/large/large_post_1.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Transportation",
+      "imageFileName": "assets/img/posts/large/large_post_3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Adventure",
+      "imageFileName": "assets/img/posts/large/large_post_4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Artificial Intelligence",
+      "imageFileName": "assets/img/posts/large/large_post_5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Economy",
+      "imageFileName": "assets/img/posts/large/large_post_6.jpg"
+    }
+  ]
+  

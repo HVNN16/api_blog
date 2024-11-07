@@ -1,6 +1,6 @@
 // index.js
 require('dotenv').config(); // Load environment variables
-
+const categoriesRouter = require('./routes/categories');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -28,6 +28,8 @@ mongoose
 // Sử dụng storyRoutes cho đường dẫn /stories
 app.use('/stories', storyRoutes);
 
+// Sử dụng storyRoutes cho đường dẫn /categories
+app.use('/categories', categoriesRouter);
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
