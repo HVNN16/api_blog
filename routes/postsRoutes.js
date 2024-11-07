@@ -6,7 +6,7 @@ const Post = require('../models/Post.js');
 // Lấy danh sách tất cả posts
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find();  // Assuming you have a Post model and database setup
+    const posts = await Post.find();
     res.json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
