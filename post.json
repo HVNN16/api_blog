@@ -1,0 +1,30 @@
+[
+    {
+      "id": 1,
+      "title": "BMW M5 Competition Review 2021",
+      "caption": "TOP GEAR",
+      "likes": "3.1k",
+      "time": "1hr ago",
+      "isBookmarked": false,
+      "imageFileName": "assets/img/posts/small/small_post_1.jpg"
+    },
+    {
+      "id": 0,
+      "title": "MacBook Pro with M1 Pro and M1 Max review",
+      "caption": "THE VERGE",
+      "likes": "1.2k",
+      "time": "2hr ago",
+      "isBookmarked": false,
+      "imageFileName": "assets/img/posts/small/small_post_2.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Step design sprint for UX beginner",
+      "caption": "UX Design",
+      "likes": "2k",
+      "time": "41hr ago",
+      "isBookmarked": true,
+      "imageFileName": "assets/img/posts/small/small_post_3.jpg"
+    }
+  ]
+  
