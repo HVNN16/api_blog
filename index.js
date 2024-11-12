@@ -1,39 +1,50 @@
-require('dotenv').config(); // Load environment variables
-const categoriesRouter = require('./routes/categories');
+require('dotenv').config(); // Đọc biến môi trường từ file .env
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const postsRoutes = require('./routes/postsRoutes');  
-const storyRoutes = require('./routes/storyRoutes'); 
+const session = require('express-session');
+
+// Import các route
+const authRoutes = require('./routes/authRoutes');  // Route cho đăng nhập
+const storyRoutes = require('./routes/storyRoutes'); // Route cho stories
+const categoriesRouter = require('./routes/categories'); // Route cho categories
+const postsRoutes = require('./routes/postsRoutes'); // Route cho posts
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Middleware
-app.use(cors());
+// Cấu hình middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Kết nối tới MongoDB
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 20000, // Thời gian timeout 20 giây
+// Middleware cho session
+app.use(session({
+  secret: process.env.SECRET_KEY, // Dùng secret key từ .env
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Cấu hình EJS và thư mục views
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+// Kết nối MongoDB
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Kết nối thành công đến MongoDB');
+
+    // Chỉ bắt đầu server khi kết nối thành công
+    app.listen(PORT, () => {
+      console.log(`Server đang chạy tại http://localhost:${PORT}`);
+    });
   })
-  .then(() => console.log("Kết nối thành công tới MongoDB"))
-  .catch((err) => console.error("Lỗi kết nối MongoDB:", err));
+  .catch((err) => {
+    console.error('Lỗi kết nối MongoDB:', err);
+  });
 
-// Sử dụng storyRoutes cho đường dẫn /stories
-app.use('/stories', storyRoutes);
-
-// Sử dụng storyRoutes cho đường dẫn /categories
-app.use('/categories', categoriesRouter);
-
-// Sử dụng storyRoutes cho đường dẫn /posts
-app.use('/posts', postsRoutes);  
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Sử dụng các route đã khai báo
+app.use('/', authRoutes); // Route cho đăng nhập
+app.use('/stories', storyRoutes); // Route cho stories
+app.use('/users', authRoutes); // Route cho stories
+app.use('/categories', categoriesRouter); // Route cho categories
+app.use('/posts', postsRoutes); // Route cho posts

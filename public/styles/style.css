@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+}
+
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard h1 {
+    font-size: 2rem;
+}
+
+.dashboard nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard nav ul li {
+    display: inline;
+    margin-right: 20px;
+}

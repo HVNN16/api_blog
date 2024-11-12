@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Favicon -->
+  <link href="img/brand/favicon.png" rel="icon" type="image/png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: #f0f4f8;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-card .card-title {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-field {
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 10px 15px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-field:focus {
+      border-color: #5e72e4;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: #5e72e4;
+      border-color: #5e72e4;
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #4e61d1;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 20px;
+    }
+
+    .forgot-password,
+    .create-account {
+      font-size: 0.9rem;
+      color: #5e72e4;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .forgot-password:hover,
+    .create-account:hover {
+      color: #4e61d1;
+    }
+
+    .social-login-btns a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #555;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .social-login-btns a:hover {
+      background: #f0f4f8;
+      border-color: #5e72e4;
+    }
+
+    .social-login-btns .github {
+      color: #333;
+    }
+
+    .social-login-btns .google {
+      color: #db4437;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+      <div class="login-card">
+          <h2 class="card-title">Sign In</h2>
+
+          <!-- Social login buttons -->
+          <div class="social-login-btns text-center">
+              <a href="#" class="btn btn-outline-dark github">
+                  <i class="fab fa-github"></i> Github
+              </a>
+              <a href="#" class="btn btn-outline-danger google">
+                  <i class="fab fa-google"></i> Google
+              </a>
+          </div>
+
+          <div class="divider text-center my-4">
+              <span>or</span>
+          </div>
+
+          <!-- Form -->
+          <form action="/login" method="POST">
+              <!-- Email Input -->
+              <div class="form-group">
+                  <input  name="username" class="input-field" placeholder="User" required>
+              </div>
+              <!-- Password Input -->
+              <div class="form-group">
+                  <input type="password" name="password" class="input-field" placeholder="Password" required>
+              </div>
+              <!-- Remember Me -->
+              <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary">Sign In</button>
+          </form>
+
+          <!-- Forgot password and create account links -->
+          <a href="#" class="create-account" data-bs-toggle="modal" data-bs-target="#contactModal">Create new account</a>
+      </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+      <p class="footer-text">&copy; 2024 Admin Dashboard. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for Create New Account -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Hãy liên hệ <strong>Huỳnh Văn Nghĩa</strong> để đăng kí thành viên và cấp quyền quản trị!!!.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
