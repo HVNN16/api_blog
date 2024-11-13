@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Story</title>
+</head>
+<body>
+  <h1>Add New Story</h1>
+  <form action="/stories" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="imageFileName">Image File Name:</label>
+    <input type="text" name="imageFileName" required><br>
+
+    <label for="iconFileName">Icon File Name:</label>
+    <input type="text" name="iconFileName" required><br>
+
+    <label for="isViewed">Is Viewed:</label>
+    <input type="checkbox" name="isViewed"><br>
+
+    <button type="submit">Add Story</button>
+  </form>
+  <a href="/stories">Back to Manage Stories</a>
+</body>
+</html>

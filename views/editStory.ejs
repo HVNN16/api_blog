@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Story</title>
+</head>
+<body>
+  <h1>Edit Story</h1>
+  <form action="/stories/edit/<%= story._id %>" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="<%= story.name %>" required><br>
+
+    <label for="imageFileName">Image File Name:</label>
+    <input type="text" name="imageFileName" value="<%= story.imageFileName %>" required><br>
+
+    <label for="iconFileName">Icon File Name:</label>
+    <input type="text" name="iconFileName" value="<%= story.iconFileName %>" required><br>
+
+    <label for="isViewed">Is Viewed:</label>
+    <input type="checkbox" name="isViewed" <% if (story.isViewed) { %> checked <% } %>><br>
+
+    <button type="submit">Update Story</button>
+  </form>
+  <a href="/stories">Back to Manage Stories</a>
+</body>
+</html>

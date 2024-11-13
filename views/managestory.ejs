@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Stories</title>
+</head>
+<body>
+  <h1>Manage Stories</h1>
+  <a href="/stories/add">Add New Story</a>
+  <ul>
+    <% stories.forEach(story => { %>
+      <li>
+        <h2><%= story.name %></h2>
+        <p><%= story.imageFileName %></p>
+        <p><%= story.iconFileName %></p>
+        <p><%= story.isViewed ? 'Viewed' : 'Not Viewed' %></p>
+        <a href="/stories/edit/<%= story._id %>">Edit</a>
+        <a href="/stories/delete/<%= story._id %>">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

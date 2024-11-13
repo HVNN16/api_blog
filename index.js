@@ -24,6 +24,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Middleware for parsing form data
+app.use(express.urlencoded({ extended: true }));  // For form submissions
+app.use(express.json());  // For JSON requests
+
 // Cấu hình EJS và thư mục views
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -45,6 +49,5 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 // Sử dụng các route đã khai báo
 app.use('/', authRoutes); // Route cho đăng nhập
 app.use('/stories', storyRoutes); // Route cho stories
-app.use('/users', authRoutes); // Route cho stories
 app.use('/categories', categoriesRouter); // Route cho categories
 app.use('/posts', postsRoutes); // Route cho posts

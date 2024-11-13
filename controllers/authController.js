@@ -1,5 +1,4 @@
-const User = require('../models/User'); // Import model User
-
+const User = require('../models/User'); 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
