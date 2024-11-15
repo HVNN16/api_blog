@@ -1,11 +1,166 @@
 <!-- views/partials/navbar.ejs -->
+<style>
+  /* Reset margin and padding */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Body styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    color: #495057;
+    overflow-x: hidden;
+  }
+
+  /* Sidebar styles */
+  .sidebar {
+    width: 270px;
+    background-color: #343a40;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar h2 {
+    color: #ffdd59;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .sidebar a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 6px;
+    margin: 8px 0;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar a:hover {
+    background-color: #ffdd59;
+    color: #343a40;
+    font-weight: bold;
+  }
+
+  /* Active link style */
+  .sidebar a.active {
+    background-color: #495057;
+    color: #ffdd59;
+  }
+
+  /* Content area styles */
+  .content {
+    margin-left: 270px;
+    padding: 40px;
+    flex: 1;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header styles */
+  .content h1 {
+    font-size: 36px;
+    color: #343a40;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* General content text */
+  .content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* Info Cards */
+  .card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card h3 {
+    font-size: 22px;
+    color: #343a40;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 16px;
+    color: #6c757d;
+  }
+
+  /* Logout Button */
+  .logout {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #ff4b5c;
+    color: #fff;
+    border: none;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .logout:hover {
+    background-color: #e03a47;
+  }
+
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 220px;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+    .content h1 {
+      font-size: 28px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+
 <div class="sidebar">
     <h2>Admin Dashboard</h2>
-    <a href="#" class="nav-link">Dashboard</a>
+    <a href="#" class="nav-link active">Dashboard</a>
     <a href="/stories" class="nav-link">Stories</a>
     <a href="/categories" class="nav-link">Categories</a>
     <a href="/posts" class="nav-link">Posts</a>
-    <a href="/users" class="nav-link">Users</a>
+    <a href="/users/manage" class="nav-link">Users</a>
     <a href="/logout" class="logout">Logout</a>
-  </div>
-  
+</div>

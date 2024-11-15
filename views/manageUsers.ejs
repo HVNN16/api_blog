@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users</title>
+  <style>
+    /* styles.css */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .content {
+      padding: 20px;
+      background-color: white;
+      margin-top: 50px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .add-user-link {
+      font-size: 16px;
+      color: #007bff;
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .add-user-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    td {
+      background-color: #fafafa;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+
+    .actions a, .actions button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .actions a {
+      color: white;
+      background-color: #5cb85c;
+      text-decoration: none;
+    }
+
+    .actions a:hover {
+      background-color: #4cae4c;
+    }
+
+    .actions button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+    }
+
+    .actions button:hover {
+      background-color: #c82333;
+    }
+
+    .actions a.delete {
+      background-color: #d9534f;
+    }
+
+    .actions a.delete:hover {
+      background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Include Navbar -->
+    <%- include('partials/navbar') %>
+
+    <div class="content">
+      <h1>Manage Users</h1>
+
+      <a href="/users/add" class="add-user-link">Add New User</a>
+
+      <% if (users.length === 0) { %>
+        <p>No users found.</p>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+              <tr>
+                <td><%= user.username %></td>
+                <td class="actions">
+                  <a href="/users/edit/<%= user._id %>">Edit</a>
+                  <form action="/users/delete/<%= user._id %>" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

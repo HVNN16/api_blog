@@ -1,47 +1,24 @@
-// routes/postsRoutes.js
+// routes/posts.js
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post.js');
+const PostController = require('../controllers/PostController');
 
-// Lấy danh sách tất cả posts
-router.get('/', async (req, res) => {
-  try {
-    const posts = await Post.find();
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Route để hiển thị tất cả posts và trang quản lý
+router.get('/', PostController.managePosts);
 
-// Thêm mới một post
-router.post('/', async (req, res) => {
-  const post = new Post(req.body);
-  try {
-    const savedPost = await post.save();
-    res.status(201).json(savedPost);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// Route để lấy form thêm post mới
+router.get('/add', PostController.addNewPostForm);
 
-// Cập nhật một post theo ID
-router.put('/:id', async (req, res) => {
-  try {
-    const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedPost);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// Route để thêm post mới vào cơ sở dữ liệu
+router.post('/add', PostController.addNewPost);
 
-// Xóa một post theo ID
-router.delete('/:id', async (req, res) => {
-  try {
-    await Post.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Post deleted' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Route để lấy form chỉnh sửa post
+router.get('/edit/:id', PostController.editPostForm);
+
+// Route để cập nhật post trong cơ sở dữ liệu
+router.post('/edit/:id', PostController.editPost);
+
+// Route để xóa post khỏi cơ sở dữ liệu
+router.post('/delete/:id', PostController.deletePost);
 
 module.exports = router;

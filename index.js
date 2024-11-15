@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-
+const userRoutes = require('./routes/userRoutes'); // Route cho người dùng
 // Import các route
 const authRoutes = require('./routes/authRoutes');  // Route cho đăng nhập
 const storyRoutes = require('./routes/storyRoutes'); // Route cho stories
@@ -31,6 +31,8 @@ app.use(express.json());  // For JSON requests
 // Cấu hình EJS và thư mục views
 app.set('view engine', 'ejs');
 app.set('views', './views');
+// Cấu hình Express để phục vụ hình ảnh từ thư mục assets
+app.use('/assets', express.static('assets')); // Dòng này sẽ phục vụ hình ảnh từ thư mục assets
 
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -51,3 +53,4 @@ app.use('/', authRoutes); // Route cho đăng nhập
 app.use('/stories', storyRoutes); // Route cho stories
 app.use('/categories', categoriesRouter); // Route cho categories
 app.use('/posts', postsRoutes); // Route cho posts
+app.use('/users', userRoutes); // Route cho users

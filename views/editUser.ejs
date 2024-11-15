@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add New Story</title>
+  <title>Edit User</title>
   <style>
-    /* styles.css */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f9;
@@ -30,6 +29,7 @@
     h1 {
       font-size: 24px;
       margin-bottom: 20px;
+      color: #343a40;
     }
 
     .form-container {
@@ -46,6 +46,7 @@
     label {
       font-size: 16px;
       margin-bottom: 5px;
+      color: #495057;
     }
 
     .form-input {
@@ -56,13 +57,14 @@
     }
 
     .submit-button {
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #007bff;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      transition: background-color 0.3s ease;
     }
 
     .submit-button:hover {
@@ -74,6 +76,7 @@
       display: inline-block;
       color: #007bff;
       text-decoration: none;
+      font-size: 16px;
     }
 
     .back-link:hover {
@@ -87,33 +90,23 @@
     <%- include('partials/navbar') %>
 
     <div class="content">
-      <h1>Add New Story</h1>
-      
-      <form action="/stories" method="POST" enctype="multipart/form-data" class="form-container">
+      <h1>Edit User</h1>
+
+      <form action="/users/edit/<%= user._id %>" method="POST" class="form-container">
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" name="name" required class="form-input">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" value="<%= user.username %>" required class="form-input">
         </div>
 
         <div class="form-group">
-          <label for="imageFileName">Upload Image:</label>
-          <input type="file" name="imageFileName" required class="form-input">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required class="form-input">
         </div>
 
-        <div class="form-group">
-          <label for="iconFileName">Upload Icon:</label>
-          <input type="file" name="iconFileName" required class="form-input">
-        </div>
-
-        <div class="form-group">
-          <label for="isViewed">Is Viewed:</label>
-          <input type="checkbox" name="isViewed" class="form-input">
-        </div>
-
-        <button type="submit" class="submit-button">Add Story</button>
+        <button type="submit" class="submit-button">Update User</button>
       </form>
 
-      <a href="/stories" class="back-link">Back to Manage Stories</a>
+      <a href="/users/manage" class="back-link">Back to Manage Users</a>
     </div>
   </div>
 </body>
