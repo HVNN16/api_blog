@@ -5,7 +5,7 @@ const Story = require('../models/Story');
 const manageStories = async (req, res) => {
   try {
     const stories = await Story.find();
-    res.render('manageStory', { stories });
+    res.render('11manageStory', { stories });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

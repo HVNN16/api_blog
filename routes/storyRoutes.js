@@ -6,7 +6,7 @@ const Story = require('../models/Story');
 router.get('/', async (req, res) => {
   try {
     const stories = await Story.find();
-    res.render('manageStory', { stories });
+    res.render('11manageStory', { stories });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
