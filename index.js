@@ -3,8 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cors = require('cors'); // Thêm cors
+
 const userRoutes = require('./routes/userRoutes'); // Route cho người dùng
-// Import các route
 const authRoutes = require('./routes/authRoutes');  // Route cho đăng nhập
 const storyRoutes = require('./routes/storyRoutes'); // Route cho stories
 const categoriesRouter = require('./routes/categories'); // Route cho categories
@@ -12,6 +13,9 @@ const postsRoutes = require('./routes/postsRoutes'); // Route cho posts
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Cấu hình CORS để cho phép tất cả các origin
+app.use(cors());  // Bạn cũng có thể sử dụng cors(corsOptions) nếu cần cấu hình cụ thể
 
 // Cấu hình middleware
 app.use(bodyParser.urlencoded({ extended: true }));
