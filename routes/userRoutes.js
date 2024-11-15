@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController.js')
+const userController = require('../controllers/11user11controller.js')
 // Hiển thị danh sách người dùng
 router.get('/manage', userController.manageUsers);
 
