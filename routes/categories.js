@@ -3,22 +3,25 @@ const express = require('express');
 const router = express.Router();
 const CategoryController = require('../controllers/CategoryController');
 
-// Route để hiển thị tất cả categories và trang quản lý
+// Route to display all categories and management page (HTML page)
 router.get('/', CategoryController.manageCategories);
 
-// Route để lấy form thêm category mới
+// Route to get all categories in JSON format
+router.get('/api', CategoryController.getCategoriesJson);  // This will serve the JSON data
+
+// Route to get the form for adding a new category
 router.get('/add', CategoryController.addNewCategoryForm);
 
-// Route để thêm category mới vào cơ sở dữ liệu
+// Route to add a new category to the database
 router.post('/add', CategoryController.addNewCategory);
 
-// Route để lấy form chỉnh sửa một category
+// Route to get the form for editing a category
 router.get('/edit/:id', CategoryController.editCategoryForm);
 
-// Route để cập nhật category trong cơ sở dữ liệu
+// Route to update a category in the database
 router.post('/edit/:id', CategoryController.editCategory);
 
-// Route để xóa một category khỏi cơ sở dữ liệu
+// Route to delete a category from the database
 router.post('/delete/:id', CategoryController.deleteCategory);
 
 module.exports = router;

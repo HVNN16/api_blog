@@ -82,11 +82,22 @@ const deletePost = async (req, res) => {
   }
 };
 
+// Get all posts as JSON (for API endpoint)
+const getAllPostsJson = async (req, res) => {
+  try {
+    const posts = await Post.find();  // Retrieve all posts from the database
+    res.json(posts);  // Return posts as a JSON response
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
-  managePosts,
+  managePosts,       // Ensure this is properly defined and exported
   addNewPostForm,
   addNewPost,
   editPostForm,
   editPost,
   deletePost,
+  getAllPostsJson,  // Make sure to export the new method
 };

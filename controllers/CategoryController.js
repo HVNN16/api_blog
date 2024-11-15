@@ -71,6 +71,16 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+// Lấy tất cả categories dưới dạng JSON
+const getCategoriesJson = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.json(categories);  // Trả về categories dưới dạng JSON
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   manageCategories,
   addNewCategoryForm,
@@ -78,4 +88,5 @@ module.exports = {
   editCategoryForm,
   editCategory,
   deleteCategory,
+  getCategoriesJson,  // Export the new function
 };

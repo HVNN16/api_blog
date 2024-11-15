@@ -51,24 +51,40 @@
       background-color: #fafafa;
       border: 1px solid #ddd;
       margin: 10px 0;
-      padding: 15px;
+      padding: 20px;
       border-radius: 8px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
     li h2 {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 24px;
       color: #333;
+      flex: 1; /* Phần chữ chiếm không gian còn lại */
     }
     li p {
       margin: 5px 0;
       color: #666;
     }
+    .image-container {
+      flex-shrink: 0; /* Không co lại */
+      display: flex;
+      flex-direction: column; /* Sắp xếp hình ảnh và icon theo cột */
+      gap: 10px; /* Khoảng cách giữa hình ảnh và icon */
+      align-items: center; /* Căn giữa các phần tử */
+    }
+    .image-container img {
+      max-width: 150px;
+      max-height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
     .actions {
       display: flex;
-      gap: 10px;
+      gap: 15px;
+      justify-content: flex-start;
     }
     .actions a {
       background-color: #f0ad4e;
@@ -92,18 +108,31 @@
 <body>
     <%- include('partials/navbar') %>
 
-
-
   <div class="container">
     <a href="/stories/add" class="add-story-btn">Add New Story</a>
 
     <ul>
       <% stories.forEach(story => { %>
         <li>
-          <h2><%= story.name %></h2>
-          <p><strong>Image:</strong> <%= story.imageFileName %></p>
-          <p><strong>Icon:</strong> <%= story.iconFileName %></p>
-          <p><strong>Status:</strong> <%= story.isViewed ? 'Viewed' : 'Not Viewed' %></p>
+          <!-- Phần chữ (Tên câu chuyện và trạng thái) -->
+          <div class="text-container">
+            <h2><%= story.name %></h2>
+            <p><strong>Status:</strong> <%= story.isViewed ? 'Viewed' : 'Not Viewed' %></p>
+          </div>
+
+          <!-- Phần hình ảnh và icon -->
+          <div class="image-container">
+            <div>
+              <strong>Image:</strong>
+              <img src="<%= story.imageFileName %>" alt="<%= story.name %> Image">
+            </div>
+            <div>
+              <strong>Icon:</strong>
+              <img src="<%= story.iconFileName %>" alt="<%= story.name %> Icon">
+            </div>
+          </div>
+
+          <!-- Các hành động: Edit và Delete -->
           <div class="actions">
             <a href="/stories/edit/<%= story._id %>">Edit</a>
             <a href="/stories/delete/<%= story._id %>" class="delete">Delete</a>

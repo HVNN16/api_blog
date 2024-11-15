@@ -3,19 +3,28 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const User = require('../models/User');
 
-// Route GET cho /users để trả về danh sách người dùng dưới dạng JSON
+// Route GET cho /users để trả về trang HTML với danh sách người dùng
 router.get('/users', async (req, res) => {
   try {
-    const users = await User.find(); 
-    res.json(users); 
+    const users = await User.find();
+    res.render('users', { users }); // Render trang HTML với danh sách người dùng (views/users.ejs)
   } catch (error) {
-    res.status(500).json({ message: error.message }); 
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Route GET cho /users/api để trả về danh sách người dùng dưới dạng JSON
+router.get('/users/api', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users); // Trả về dữ liệu JSON
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
 // Route GET để hiển thị trang đăng nhập
 router.get('/login', (req, res) => {
-  // Nếu người dùng đã đăng nhập, chuyển hướng trực tiếp đến trang admin
   if (req.session.user) {
     return res.redirect('/admin');
   }

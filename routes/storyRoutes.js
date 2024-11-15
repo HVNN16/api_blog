@@ -2,11 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Story = require('../models/Story');
 
-// GET: Manage stories page
+// GET: Manage stories page (HTML)
 router.get('/', async (req, res) => {
   try {
     const stories = await Story.find();
+    // Render trang HTML với dữ liệu stories
     res.render('11manageStory', { stories });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// GET: Stories API (JSON)
+router.get('/api', async (req, res) => {
+  try {
+    const stories = await Story.find();
+    // Trả về danh sách stories dưới dạng JSON
+    res.json(stories);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
