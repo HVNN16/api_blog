@@ -5,131 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Category</title>
   <style>
-    /* styles.css */
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      background-color: #f4f7fc;
       margin: 0;
       padding: 0;
     }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    .content {
+    .form-container {
+      width: 400px;
+      margin: 50px auto;
       padding: 20px;
-      background-color: white;
-      margin-top: 50px;
+      background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #343a40;
+      text-align: center;
+      color: #333;
     }
-
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
     label {
-      font-size: 16px;
+      font-weight: bold;
+      display: block;
       margin-bottom: 5px;
-      color: #495057;
+      color: #555;
     }
-
-    .form-input {
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
       border-radius: 4px;
     }
-
-    .form-input[type="file"] {
-      padding: 5px;
-    }
-
-    /* Button Styling */
-    .submit-button {
-      padding: 12px 24px;
-      background-color: #007bff;
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s ease;
     }
-
-    .submit-button:hover {
-      background-color: #0056b3;
+    button:hover {
+      background-color: #45a049;
     }
-
-    /* Back link Styling */
     .back-link {
-      margin-top: 20px;
-      display: inline-block;
-      color: #007bff;
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    .back-link a {
       text-decoration: none;
-      font-size: 16px;
+      color: #4CAF50;
+      font-weight: bold;
     }
-
-    .back-link:hover {
+    .back-link a:hover {
       text-decoration: underline;
-    }
-
-    /* Custom styling for file input */
-    .file-input-label {
-      display: flex;
-      flex-direction: column;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .file-input {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Include Navbar -->
-    <%- include('partials/navbar') %>
 
-    <div class="content">
-      <h1>Edit Category</h1>
-      
-      <form action="/categories/edit/<%= category._id %>" method="POST" enctype="multipart/form-data" class="form-container">
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" value="<%= category.title %>" required class="form-input">
-        </div>
+  <div class="form-container">
+    <h1>Edit Category</h1>
+    <form action="/categories/edit/<%= category._id %>" method="POST">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" value="<%= category.title %>" required>
+      <br>
 
-        <div class="form-group">
-          <label for="imageFileName" class="file-input-label">Upload Image:</label>
-          <input type="file" id="imageFileName" name="imageFileName" required class="file-input">
-        </div>
+      <label for="imageFileName">Image File Name:</label>
+      <input type="text" id="imageFileName" name="imageFileName" value="<%= category.imageFileName %>" required>
+      <br>
 
-        <button type="submit" class="submit-button">Save Changes</button>
-      </form>
+      <button type="submit">Save Changes</button>
+    </form>
 
-      <a href="/categories" class="back-link">Back to Manage Categories</a>
+    <div class="back-link">
+      <a href="/categories">Back to Manage Categories</a>
     </div>
   </div>
+
 </body>
 </html>

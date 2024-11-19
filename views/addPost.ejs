@@ -5,132 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add New Post</title>
   <style>
-    /* styles.css */
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      background-color: #f4f7fc;
       margin: 0;
       padding: 0;
     }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    .content {
+    .form-container {
+      width: 450px;
+      margin: 50px auto;
       padding: 20px;
-      background-color: white;
-      margin-top: 50px;
+      background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
     }
-
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
     label {
-      font-size: 16px;
+      font-weight: bold;
+      display: block;
       margin-bottom: 5px;
+      color: #555;
     }
-
-    .form-input {
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
+    input[type="text"], input[type="number"], input[type="checkbox"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
       border-radius: 4px;
     }
-
-    .submit-button {
-      padding: 10px 20px;
-      background-color: #007bff;
+    input[type="checkbox"] {
+      width: auto;
+    }
+    .checkbox-label {
+      display: inline-block;
+      margin-left: 5px;
+      color: #555;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
     }
-
-    .submit-button:hover {
-      background-color: #0056b3;
+    button:hover {
+      background-color: #45a049;
     }
-
     .back-link {
-      margin-top: 20px;
-      display: inline-block;
-      color: #007bff;
-      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 16px;
     }
-
-    .back-link:hover {
+    .back-link a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .back-link a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Include Navbar -->
-    <%- include('partials/navbar') %>
 
-    <div class="content">
-      <h1>Add New Post</h1>
-      
-      <form action="/posts/add" method="POST" enctype="multipart/form-data" class="form-container">
-        <div class="form-group">
-          <label for="id">ID:</label>
-          <input type="number" id="id" name="id" required class="form-input">
-        </div>
+  <div class="form-container">
+    <h1>Add New Post</h1>
 
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" required class="form-input">
-        </div>
+    <form action="/posts/add" method="POST">
+      <label for="id">ID:</label>
+      <input type="number" id="id" name="id" required>
+      <br>
 
-        <div class="form-group">
-          <label for="caption">Caption:</label>
-          <input type="text" id="caption" name="caption" required class="form-input">
-        </div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      <br>
 
-        <div class="form-group">
-          <label for="likes">Likes:</label>
-          <input type="number" id="likes" name="likes" required class="form-input">
-        </div>
+      <label for="caption">Caption:</label>
+      <input type="text" id="caption" name="caption" required>
+      <br>
 
-        <div class="form-group">
-          <label for="time">Time:</label>
-          <input type="text" id="time" name="time" required class="form-input">
-        </div>
+      <label for="likes">Likes:</label>
+      <input type="text" id="likes" name="likes" required>
+      <br>
 
-        <div class="form-group">
-          <label for="isBookmarked">Bookmarked:</label>
-          <input type="checkbox" id="isBookmarked" name="isBookmarked">
-        </div>
+      <label for="time">Time:</label>
+      <input type="text" id="time" name="time" required>
+      <br>
 
-        <!-- File input for image upload -->
-        <div class="form-group">
-          <label for="imageFileName">Upload Image:</label>
-          <input type="file" id="imageFileName" name="imageFileName" required class="form-input">
-        </div>
+      <label for="isBookmarked">
+        <input type="checkbox" id="isBookmarked" name="isBookmarked">
+        <span class="checkbox-label">Bookmarked</span>
+      </label><br>
 
-        <button type="submit" class="submit-button">Add Post</button>
-      </form>
+      <label for="imageFileName">Image File Name:</label>
+      <input type="text" id="imageFileName" name="imageFileName" required>
+      <br>
 
-      <a href="/posts" class="back-link">Back to Manage Posts</a>
+      <button type="submit">Add Post</button>
+    </form>
+
+    <div class="back-link">
+      <a href="/posts">Back to Manage Posts</a>
     </div>
   </div>
+
 </body>
 </html>

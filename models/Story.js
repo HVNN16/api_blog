@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const storySchema = new mongoose.Schema({
   id: { 
     type: Number, 
-    unique: true,
-    required: true,
+    unique: true,  // Chắc chắn rằng id là duy nhất
+    required: false,  // Không yêu cầu trực tiếp, vì bạn sẽ tự động gán
   },
   name: { 
     type: String, 
@@ -25,14 +25,13 @@ const storySchema = new mongoose.Schema({
   }
 });
 
+// Tự động gán id khi lưu story mới
 storySchema.pre('save', async function (next) {
-  if (this.isNew && !this.id) {  
+  if (this.isNew && this.id === undefined) {  // Nếu không có id, gán id mới
     const lastStory = await this.constructor.findOne().sort('-id');  // Tìm story có id lớn nhất
     this.id = lastStory ? lastStory.id + 1 : 1;  // Nếu không có story nào, gán id = 1
   }
-  next();
+  next();  // Tiến hành lưu story
 });
-  // Proceed with saving
-
 
 module.exports = mongoose.model('Story', storySchema);
